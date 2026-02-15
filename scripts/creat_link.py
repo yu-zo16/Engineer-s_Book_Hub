@@ -2,7 +2,20 @@ import urllib.parse
 import time
 import re
 import requests
-from amazon_paapi import AmazonApi
+# --- ここから修正 ---
+try:
+    from amazon_paapi import AmazonApi
+except ImportError:
+    # GitHub Actions環境などで名前が認識されない場合の予備ルート
+    try:
+        from amazon_paapi.amazon_paapi import AmazonApi
+    except ImportError:
+        # 最終手段：インストールされている場所を力技で探す
+        import os
+        import sys
+        print("Python Path:", sys.path)
+        raise
+# --- ここまで修正 ---
 from supabase import create_client
 
 # --- 1. 設定情報 ---
