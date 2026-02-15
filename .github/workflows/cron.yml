@@ -22,7 +22,7 @@ jobs:
         # app/ 直下の scripts フォルダを指定
         working-directory: "scripts"
         run: |
-          pip install supabase pandas requests amazon-paapi
+          pip install supabase pandas requests amazon_paapi
 
       - name: Run Pipeline
         working-directory: "scripts"
