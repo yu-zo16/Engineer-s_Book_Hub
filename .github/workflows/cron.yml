@@ -1,0 +1,33 @@
+name: Scheduled Tech Book Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        # app/ 直下の scripts フォルダを指定
+        working-directory: "scripts"
+        run: |
+          pip install supabase pandas requests 
+
+      - name: Run Pipeline
+        working-directory: "scripts"
+        run: |
+          python qiita_all_search.py
+          python asin_search.py
+          python creat_link.py
+          python ranking_create.py
