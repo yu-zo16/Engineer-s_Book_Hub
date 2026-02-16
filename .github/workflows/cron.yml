@@ -35,7 +35,7 @@ jobs:
         run: python -m pip install requests
 
       - name: Install Amazon PAAPI
-        run: python -m pip install amazon-paapi5
+        run: python -m pip install python-amazon-paapi
 
       # インストール確認（超重要デバッグ）
       - name: Check installed packages
